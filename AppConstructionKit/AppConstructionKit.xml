@@ -1,0 +1,275 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AppConstructionKit</name>
+    </assembly>
+    <members>
+        <member name="T:AppConstructionKit.Common.ClassExtensions">
+            <summary>
+            Common class extensions
+            </summary>
+        </member>
+        <member name="M:AppConstructionKit.Common.ClassExtensions.IsSQLValid(System.DateTime)">
+            <summary>
+            <see cref="T:System.DateTime"/> extension: Verify <see cref="T:System.DateTime"/> is valid for Microsoft SQL Server
+            </summary>
+            <param name="dt">The <see cref="T:System.DateTime"/> to check</param>
+            <returns><c>true</c> if the <see cref="T:System.DateTime"/> is valid; otherwise <c>false</c></returns>
+        </member>
+        <member name="M:AppConstructionKit.Common.ClassExtensions.JulianDate(System.DateTime)">
+            <summary>
+            <see cref="T:System.DateTime"/> extension: Get <see cref="T:System.DateTime"/> as Julian Date (Day of year)
+            </summary>
+            <param name="dt">The <see cref="T:System.DateTime"/> to convert</param>
+            <returns>Julian calendar date</returns>
+        </member>
+        <member name="M:AppConstructionKit.Common.ClassExtensions.Elapsed(System.DateTime)">
+            <summary>
+            <see cref="T:System.DateTime"/> extension: Elapsed time since a given <see cref="T:System.DateTime"/>
+            </summary>
+            <param name="dt"></param>
+            <returns>Elapsed time since a given <see cref="T:System.DateTime"/></returns>
+        </member>
+        <member name="M:AppConstructionKit.Common.ClassExtensions.ElapsedAsOf(System.DateTime,System.DateTime)">
+            <summary>
+            <see cref="T:System.DateTime"/> extension: Elapsed time between two <see cref="T:System.DateTime"/>
+            </summary>
+            <param name="dt"></param>
+            <param name="compare"></param>
+            <returns>Elapsed time between two <see cref="T:System.DateTime"/></returns>
+        </member>
+        <member name="M:AppConstructionKit.Common.ClassExtensions.Age(System.DateTime)">
+            <summary>
+            <see cref="T:System.DateTime"/> extension: Current age in years from given <see cref="T:System.DateTime"/>
+            </summary>
+            <param name="dt"></param>
+            <returns>Current age in years since given <see cref="T:System.DateTime"/></returns>
+        </member>
+        <member name="M:AppConstructionKit.Common.ClassExtensions.AgeAsOf(System.DateTime,System.DateTime)">
+            <summary>
+            <see cref="T:System.DateTime"/> extension: Age in years between two <see cref="T:System.DateTime"/>
+            </summary>
+            <param name="dt"></param>
+            <param name="compare"></param>
+            <returns>Age in years between two <see cref="T:System.DateTime"/></returns>
+        </member>
+        <member name="M:AppConstructionKit.Common.ClassExtensions.IsAfter(System.DateTime,System.DateTime,System.Boolean)">
+            <summary>
+            <see cref="T:System.DateTime"/> extension: Determine if one <see cref="T:System.DateTime"/> falls after another
+            </summary>
+            <param name="value">Value to test</param>
+            <param name="query">Value to test against</param>
+            <param name="inclusive">If <c>true</c> the test is inclusive of value</param>
+            <returns><c>true</c> if value is after query; otherwise <c>false</c></returns>
+        </member>
+        <member name="M:AppConstructionKit.Common.ClassExtensions.IsBefore(System.DateTime,System.DateTime,System.Boolean)">
+            <summary>
+            <see cref="T:System.DateTime"/> extension: Determine if one <see cref="T:System.DateTime"/> falls before another
+            </summary>
+            <param name="value">Value to test</param>
+            <param name="query">Value to test against</param>
+            <param name="inclusive">If <c>true</c> the test is inclusive of value</param>
+            <returns><c>true</c> if value is before query; otherwise <c>false</c></returns>
+        </member>
+        <member name="M:AppConstructionKit.Common.ClassExtensions.IsBetween(System.DateTime,System.DateTime,System.DateTime,System.Boolean)">
+            <summary>
+            <see cref="T:System.DateTime"/> extension: Determine if one <see cref="T:System.DateTime"/> falls between two others
+            </summary>
+            <param name="value">Value to test</param>
+            <param name="lowerbound">Lowerbound value for comparison</param>
+            <param name="upperbound">Upperbound value for comparison</param>
+            <param name="inclusive">If <c>true</c> the test is inclusive of value</param>
+            <returns><c>true</c> if value is within the span of dates defined by lowerbound and upperbound; otherwise <c>false</c></returns>
+        </member>
+        <member name="M:AppConstructionKit.Common.ClassExtensions.ToXElement(System.Xml.XmlNode)">
+            <summary>
+            <see cref="T:System.Xml.XmlNode"/> extension: Convert <see cref="T:System.Xml.XmlNode"/> to <see cref="T:System.Xml.Linq.XElement"/>
+            </summary>
+            <param name="value">The <see cref="T:System.Xml.XmlNode"/> to convert</param>
+            <returns><see cref="T:System.Xml.Linq.XElement"/></returns>
+        </member>
+        <member name="M:AppConstructionKit.Common.ClassExtensions.ToXmlNode(System.Xml.Linq.XElement)">
+            <summary>
+            <see cref="T:System.Xml.Linq.XElement"/> extension: Convert <see cref="T:System.Xml.Linq.XElement"/> to <see cref="T:System.Xml.XmlNode"/>
+            </summary>
+            <param name="value">The <see cref="T:System.Xml.Linq.XElement"/> to convert</param>
+            <returns><see cref="T:System.Xml.XmlNode"/></returns>
+        </member>
+        <member name="M:AppConstructionKit.Common.ClassExtensions.ToXDocument(System.Xml.XmlDocument)">
+            <summary>
+            <see cref="T:System.Xml.XmlDocument"/> extension: Convert <see cref="T:System.Xml.XmlDocument"/> to <see cref="T:System.Xml.Linq.XDocument"/>
+            </summary>
+            <param name="value">The <see cref="T:System.Xml.XmlDocument"/> to convert</param>
+            <returns><see cref="T:System.Xml.Linq.XDocument"/></returns>
+        </member>
+        <member name="M:AppConstructionKit.Common.ClassExtensions.ToXDocument(System.Xml.XmlDocument,System.Xml.Linq.LoadOptions)">
+            <summary>
+            <see cref="T:System.Xml.XmlDocument"/> extension: Convert <see cref="T:System.Xml.XmlDocument"/> to <see cref="T:System.Xml.Linq.XDocument"/>
+            </summary>
+            <param name="value">The <see cref="T:System.Xml.XmlDocument"/> to convert</param>
+            <param name="options"><see cref="T:System.Xml.Linq.XDocument"/> <see cref="T:System.Xml.Linq.LoadOptions"/></param>
+            <returns><see cref="T:System.Xml.Linq.XDocument"/></returns>
+        </member>
+        <member name="M:AppConstructionKit.Common.ClassExtensions.ToXmlDocument(System.Xml.Linq.XDocument)">
+            <summary>
+            <see cref="T:System.Xml.Linq.XDocument"/> extension: Convert <see cref="T:System.Xml.Linq.XDocument"/> to <see cref="T:System.Xml.XmlDocument"/>
+            </summary>
+            <param name="value">The <see cref="T:System.Xml.Linq.XDocument"/> to convert</param>
+            <returns><see cref="T:System.Xml.XmlDocument"/></returns>
+        </member>
+        <member name="M:AppConstructionKit.Common.ClassExtensions.BinaryReadToEnd(System.IO.Stream)">
+            <summary>
+            Stream Extension: Binary read <see cref="T:System.IO.Stream"/> to end
+            </summary>
+            <param name="origin">Stream to read</param>
+            <returns><code>byte[]</code> containing contentof stream</returns>
+        </member>
+        <member name="T:AppConstructionKit.Cryptography.CryptographicDigest">
+            <summary>
+            Instances of this class encapsulate generation of a cryptographic digest value.
+            </summary>
+        </member>
+        <member name="M:AppConstructionKit.Cryptography.CryptographicDigest.GetDigest(System.String,System.Int32)">
+            <summary>
+            Get cryptographic digest of specific length
+            </summary>
+            <param name="passPhrase"><code>System.String</code> containing passphrase</param>
+            <param name="digestLength">Desired length of returned cryptographic digest</param>
+            <returns>Cryptographic digest value</returns>
+        </member>
+        <member name="M:AppConstructionKit.Cryptography.CryptographicDigest.GetDigest(System.Byte[],System.Int32)">
+            <summary>
+            Get cryptographic digest of specific length
+            </summary>
+            <param name="value"><code>System.byte[]</code> containing passphrase</param>
+            <param name="digestLength">Desired length of returned encryption digest</param>
+            <returns>Cryptographic digest value</returns>
+        </member>
+        <member name="M:AppConstructionKit.Cryptography.CryptographicDigest.Create">
+            <summary>
+            Factory method creates an instance of a <see cref="T:AppConstructionKit.Cryptography.CryptographicDigest"/>
+            </summary>
+            <returns>Instance of <see cref="T:AppConstructionKit.Cryptography.CryptographicDigest"/></returns>
+        </member>
+        <member name="T:AppConstructionKit.Cryptography.CryptographicHeader`1">
+            <summary>
+            Instances of this class encapsulate a Header for an encrypted value
+            </summary>
+        </member>
+        <member name="P:AppConstructionKit.Cryptography.CryptographicHeader`1.Iv">
+            <summary>
+            Initialization Vector
+            </summary>
+        </member>
+        <member name="P:AppConstructionKit.Cryptography.CryptographicHeader`1.OriginalSize">
+            <summary>
+            Data unencrypted size
+            </summary>
+        </member>
+        <member name="M:AppConstructionKit.Cryptography.CryptographicHeader`1.GetBinaryValue">
+            <summary>
+            Gets byte array containing header
+            </summary>
+            <returns><code>byte[]</code> containing <see cref="T:AppConstructionKit.Cryptography.CryptographicHeader`1"/> binary value</returns>
+        </member>
+        <member name="M:AppConstructionKit.Cryptography.CryptographicHeader`1.Size">
+            <summary>
+            Size in bytes of a <see cref="T:AppConstructionKit.Cryptography.CryptographicHeader`1"/>
+            </summary>
+            <returns>Size in bytes of the header</returns>
+        </member>
+        <member name="M:AppConstructionKit.Cryptography.CryptographicHeader`1.Create">
+            <summary>
+            Factory method creates an instance of <see cref="T:AppConstructionKit.Cryptography.CryptographicHeader`1"/>
+            </summary>
+            <returns><see cref="T:AppConstructionKit.Cryptography.CryptographicHeader`1"/> instance</returns>
+        </member>
+        <member name="M:AppConstructionKit.Cryptography.CryptographicHeader`1.Create(System.Byte[])">
+            <summary>
+            Factory method creates an instance of <see cref="T:AppConstructionKit.Cryptography.CryptographicHeader`1"/>
+            </summary>
+            <param name="value"></param>
+            <returns><see cref="T:AppConstructionKit.Cryptography.CryptographicHeader`1"/> instance</returns>
+        </member>
+        <member name="T:AppConstructionKit.Cryptography.CryptographicValue`1">
+            <summary>
+            Instances of this class incapsulate a cryptographic header and encrypted value
+            </summary>
+        </member>
+        <member name="P:AppConstructionKit.Cryptography.CryptographicValue`1.Header">
+            <summary>
+            <see cref="T:AppConstructionKit.Cryptography.CryptographicHeader`1"/>
+            </summary>
+        </member>
+        <member name="P:AppConstructionKit.Cryptography.CryptographicValue`1.Value">
+            <summary>
+            Byte array containing an encrypted value
+            </summary>
+        </member>
+        <member name="M:AppConstructionKit.Cryptography.CryptographicValue`1.Create">
+            <summary>
+            Factory method creates an instance of <see cref="T:AppConstructionKit.Cryptography.CryptographicValue`1"/>
+            </summary>
+            <returns><see cref="T:AppConstructionKit.Cryptography.CryptographicValue`1"/></returns>
+        </member>
+        <member name="M:AppConstructionKit.Cryptography.CryptographicValue`1.Create(AppConstructionKit.Cryptography.CryptographicHeader{`0},System.Byte[])">
+            <summary>
+            Factory method creates an instance of <see cref="T:AppConstructionKit.Cryptography.CryptographicValue`1"/>
+            </summary>
+            <param name="header"><see cref="T:AppConstructionKit.Cryptography.CryptographicHeader`1"/></param>
+            <param name="value">byte array containing an encrypted value</param>
+            <returns><see cref="T:AppConstructionKit.Cryptography.CryptographicValue`1"/></returns>
+        </member>
+        <member name="M:AppConstructionKit.Cryptography.CryptographicValue`1.Create(System.Byte[])">
+            <summary>
+            Factory method creates an instance of <see cref="T:AppConstructionKit.Cryptography.CryptographicValue`1"/>
+            </summary>
+            <param name="value">Binary value of a <see cref="T:AppConstructionKit.Cryptography.CryptographicValue`1"/></param>
+            <returns><see cref="T:AppConstructionKit.Cryptography.CryptographicValue`1"/></returns>
+        </member>
+        <member name="M:AppConstructionKit.Cryptography.CryptographicValue`1.GetBinaryValue">
+            <summary>
+            Returns binary value of a <see cref="T:AppConstructionKit.Cryptography.CryptographicValue`1"/>
+            </summary>
+            <returns>Binary value of a <see cref="T:AppConstructionKit.Cryptography.CryptographicValue`1"/></returns>
+        </member>
+        <member name="T:AppConstructionKit.Cryptography.SymmetricEncryptionProvider`1">
+            <summary>
+            Instances of this class encapsulate symmetric encryption functionality
+            </summary>
+            <typeparam name="TAlgorithm">The symmetric algorithm to use</typeparam>
+        </member>
+        <member name="M:AppConstructionKit.Cryptography.SymmetricEncryptionProvider`1.EncryptString(System.String,System.String)">
+            <summary>
+            Encrypt string
+            </summary>
+            <param name="value">Value to encrypt</param>
+            <param name="passPhrase">Pass phrase to generate cryptographic key</param>
+            <returns>base64 encoded string containing encrypted value</returns>
+        </member>
+        <member name="M:AppConstructionKit.Cryptography.SymmetricEncryptionProvider`1.EncryptBytes(System.Byte[],System.Byte[])">
+            <summary>
+            Encrypt byte array
+            </summary>
+            <param name="value">Value to encrypt</param>
+            <param name="key">Cryptographic key</param>
+            <returns>Byte array containing <see cref="T:AppConstructionKit.Cryptography.CryptographicHeader`1"/> and encrypted value</returns>
+        </member>
+        <member name="M:AppConstructionKit.Cryptography.SymmetricEncryptionProvider`1.DecryptString(System.String,System.String)">
+            <summary>
+            Decrypt base64 encoded string
+            </summary>
+            <param name="b64Value">base64 encoded value to decrypt</param>
+            <param name="passPhrase"></param>
+            <returns><code>System.String</code> containing decrypted value</returns>
+        </member>
+        <member name="M:AppConstructionKit.Cryptography.SymmetricEncryptionProvider`1.DecryptBytes(System.Byte[],System.Byte[])">
+            <summary>
+            Decrypt byte array
+            </summary>
+            <param name="value">Value to encrypt</param>
+            <param name="key">Encryption key</param>
+            <returns><code>byte[]</code> containing decrypted data</returns>
+        </member>
+    </members>
+</doc>

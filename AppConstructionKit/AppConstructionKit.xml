@@ -9,6 +9,11 @@
             Common class extensions
             </summary>
         </member>
+        <member name="F:AppConstructionKit.Common.ClassExtensions.CreateBuffer">
+            <summary>
+            Function to create and return a binary buffer
+            </summary>
+        </member>
         <member name="M:AppConstructionKit.Common.ClassExtensions.IsSQLValid(System.DateTime)">
             <summary>
             <see cref="T:System.DateTime"/> extension: Verify <see cref="T:System.DateTime"/> is valid for Microsoft SQL Server
@@ -124,6 +129,14 @@
             <param name="origin">Stream to read</param>
             <returns><code>byte[]</code> containing contentof stream</returns>
         </member>
+        <member name="M:AppConstructionKit.Common.ClassExtensions.ToStream(System.String,System.Text.Encoding)">
+            <summary>
+            Create <code>Stream</code> from <code>string</code>.
+            </summary>
+            <param name="origin">The string</param>
+            <param name="encoder">Encoding to use</param>
+            <returns><code>Stream</code></returns>
+        </member>
         <member name="T:AppConstructionKit.Cryptography.CryptographicDigest">
             <summary>
             Instances of this class encapsulate generation of a cryptographic digest value.
@@ -159,11 +172,6 @@
         <member name="P:AppConstructionKit.Cryptography.CryptographicHeader`1.Iv">
             <summary>
             Initialization Vector
-            </summary>
-        </member>
-        <member name="P:AppConstructionKit.Cryptography.CryptographicHeader`1.OriginalSize">
-            <summary>
-            Data unencrypted size
             </summary>
         </member>
         <member name="M:AppConstructionKit.Cryptography.CryptographicHeader`1.GetBinaryValue">

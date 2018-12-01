@@ -65,17 +65,17 @@ namespace AppConstructionKit.Cryptography
         /// <returns>Byte array containing <see cref="CryptographicHeader{TAlgorithm}"/> and encrypted value</returns>
         public byte[] EncryptBytes(byte[] value, byte[] key)
         {
-            var alg = SymmetricAlgorithm.Create(typeof(TAlgorithm).Name);
+            var algorithm = SymmetricAlgorithm.Create(typeof(TAlgorithm).Name);
 
-            if (!alg.ValidKeySize(key.Length * 8))
+            if (!algorithm.ValidKeySize(key.Length * 8))
             {
-                throw new ArgumentException("Invalid key size for specified symmetric algorithm.");
+                throw new ArgumentException("Invalid key size for specified symmetric algorithm [" + typeof(TAlgorithm).Name + "].");
             }
 
-            alg.GenerateIV();
-            alg.Key = key;
+            algorithm.GenerateIV();
+            algorithm.Key = key;
 
-            using (var encryptor = alg.CreateEncryptor())
+            using (var encryptor = algorithm.CreateEncryptor())
             {
                 using (var msEncrypt = new MemoryStream())
                 {
@@ -86,10 +86,9 @@ namespace AppConstructionKit.Cryptography
                             plainStream.CopyTo(encryptStream);
                             encryptStream.FlushFinalBlock();
                             var header = CryptographicHeader<TAlgorithm>.Create();
-                            header.Iv = alg.IV;
-                            header.OriginalSize = Convert.ToUInt32(value.Length);
+                            header.Iv = algorithm.IV;
                             var encrypted = CryptographicValue<TAlgorithm>.Create(header, msEncrypt.ToArray());
-                            alg.Clear();
+                            algorithm.Clear();
                             return encrypted.GetBinaryValue();
                         }
                     }
@@ -119,24 +118,24 @@ namespace AppConstructionKit.Cryptography
         /// <returns><code>byte[]</code> containing decrypted data</returns>
         public byte[] DecryptBytes(byte[] value, byte[] key)
         {
-            var alg = SymmetricAlgorithm.Create(typeof(TAlgorithm).Name);
+            var algorithm = SymmetricAlgorithm.Create(typeof(TAlgorithm).Name);
 
-            if (!alg.ValidKeySize(key.Length * 8))
+            if (!algorithm.ValidKeySize(key.Length * 8))
             {
-                throw new ArgumentException("Invalid key size for specified symmetric algorithm.");
+                throw new ArgumentException("Invalid key size for specified symmetric algorithm [" + typeof(TAlgorithm).Name + "].");
             }
 
-            var holder = CryptographicValue<TAlgorithm>.Create(value);
-            using (var decryptor = alg.CreateDecryptor(key, holder.Header.Iv))
+            var cryptoValue = CryptographicValue<TAlgorithm>.Create(value);
+            using (var decryptor = algorithm.CreateDecryptor(key, cryptoValue.Header.Iv))
             {
-                using (var msDecrypt = new MemoryStream(holder.Value))
+                using (var msDecrypt = new MemoryStream(cryptoValue.Value))
                 {
                     using (var decryptStream = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
                     {
                         using (var resultStream = new MemoryStream())
                         {
                             decryptStream.CopyTo(resultStream);
-                            alg.Clear();
+                            algorithm.Clear();
                             return resultStream.ToArray();
                         }
                     }

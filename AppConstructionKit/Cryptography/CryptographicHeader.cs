@@ -44,25 +44,20 @@ namespace AppConstructionKit.Cryptography
         /// Initialization Vector
         /// </summary>
         public byte[] Iv { get; set; }
-        /// <summary>
-        /// Data unencrypted size
-        /// </summary>
-        public uint OriginalSize { get; set; } = 0;
 
         private CryptographicHeader()
         {
-            var alg = SymmetricAlgorithm.Create(typeof(TAlgorithm).Name);
-            Iv = (byte[])Array.CreateInstance(typeof(byte), alg.BlockSize / 8);
+            var algorithm = SymmetricAlgorithm.Create(typeof(TAlgorithm).Name);
+            Iv = (byte[])Array.CreateInstance(typeof(byte), algorithm.BlockSize / 8);
         }
 
         private CryptographicHeader(byte[] value)
         {
-            var alg = SymmetricAlgorithm.Create(typeof(TAlgorithm).Name);
-            Iv = (byte[])Array.CreateInstance(typeof(byte), alg.BlockSize / 8);
+            var algorithm = SymmetricAlgorithm.Create(typeof(TAlgorithm).Name);
+            Iv = (byte[])Array.CreateInstance(typeof(byte), algorithm.BlockSize / 8);
             Buffer.BlockCopy(value, 0, Iv, 0, Iv.Length);
             var tempValue = (byte[])Array.CreateInstance(typeof(byte), sizeof(ulong));
             Buffer.BlockCopy(value, Iv.Length, tempValue, 0, sizeof(uint));
-            OriginalSize = BitConverter.ToUInt32(tempValue, 0);
         }
 
         /// <summary>
@@ -73,8 +68,6 @@ namespace AppConstructionKit.Cryptography
         {
             var tempValue = (byte[])Array.CreateInstance(typeof(byte), Size());
             Buffer.BlockCopy(Iv, 0, tempValue, 0, Iv.Length);
-            var tempSize = BitConverter.GetBytes(OriginalSize);
-            Buffer.BlockCopy(tempSize, 0, tempValue, Iv.Length, tempSize.Length);
             return tempValue;
         }
 
@@ -84,8 +77,8 @@ namespace AppConstructionKit.Cryptography
         /// <returns>Size in bytes of the header</returns>
         public static int Size()
         {
-            var alg = SymmetricAlgorithm.Create(typeof(TAlgorithm).Name);
-            return (alg.BlockSize / 8) + sizeof(uint);
+            var algorithm = SymmetricAlgorithm.Create(typeof(TAlgorithm).Name);
+            return (algorithm.BlockSize / 8) + sizeof(uint);
         }
 
         /// <summary>

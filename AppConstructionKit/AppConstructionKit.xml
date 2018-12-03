@@ -164,54 +164,19 @@
             </summary>
             <returns>Instance of <see cref="T:AppConstructionKit.Cryptography.CryptographicDigest"/></returns>
         </member>
-        <member name="T:AppConstructionKit.Cryptography.CryptographicHeader`1">
-            <summary>
-            Instances of this class encapsulate a Header for an encrypted value
-            </summary>
-        </member>
-        <member name="P:AppConstructionKit.Cryptography.CryptographicHeader`1.Iv">
-            <summary>
-            Initialization Vector
-            </summary>
-        </member>
-        <member name="M:AppConstructionKit.Cryptography.CryptographicHeader`1.GetBinaryValue">
-            <summary>
-            Gets byte array containing header
-            </summary>
-            <returns><code>byte[]</code> containing <see cref="T:AppConstructionKit.Cryptography.CryptographicHeader`1"/> binary value</returns>
-        </member>
-        <member name="M:AppConstructionKit.Cryptography.CryptographicHeader`1.Size">
-            <summary>
-            Size in bytes of a <see cref="T:AppConstructionKit.Cryptography.CryptographicHeader`1"/>
-            </summary>
-            <returns>Size in bytes of the header</returns>
-        </member>
-        <member name="M:AppConstructionKit.Cryptography.CryptographicHeader`1.Create">
-            <summary>
-            Factory method creates an instance of <see cref="T:AppConstructionKit.Cryptography.CryptographicHeader`1"/>
-            </summary>
-            <returns><see cref="T:AppConstructionKit.Cryptography.CryptographicHeader`1"/> instance</returns>
-        </member>
-        <member name="M:AppConstructionKit.Cryptography.CryptographicHeader`1.Create(System.Byte[])">
-            <summary>
-            Factory method creates an instance of <see cref="T:AppConstructionKit.Cryptography.CryptographicHeader`1"/>
-            </summary>
-            <param name="value"></param>
-            <returns><see cref="T:AppConstructionKit.Cryptography.CryptographicHeader`1"/> instance</returns>
-        </member>
         <member name="T:AppConstructionKit.Cryptography.CryptographicValue`1">
             <summary>
             Instances of this class incapsulate a cryptographic header and encrypted value
             </summary>
         </member>
-        <member name="P:AppConstructionKit.Cryptography.CryptographicValue`1.Header">
+        <member name="P:AppConstructionKit.Cryptography.CryptographicValue`1.Iv">
             <summary>
-            <see cref="T:AppConstructionKit.Cryptography.CryptographicHeader`1"/>
+            Cryptographic Initialization Vector
             </summary>
         </member>
         <member name="P:AppConstructionKit.Cryptography.CryptographicValue`1.Value">
             <summary>
-            Byte array containing an encrypted value
+            Encrypted value
             </summary>
         </member>
         <member name="M:AppConstructionKit.Cryptography.CryptographicValue`1.Create">
@@ -220,11 +185,11 @@
             </summary>
             <returns><see cref="T:AppConstructionKit.Cryptography.CryptographicValue`1"/></returns>
         </member>
-        <member name="M:AppConstructionKit.Cryptography.CryptographicValue`1.Create(AppConstructionKit.Cryptography.CryptographicHeader{`0},System.Byte[])">
+        <member name="M:AppConstructionKit.Cryptography.CryptographicValue`1.Create(System.Byte[],System.Byte[])">
             <summary>
             Factory method creates an instance of <see cref="T:AppConstructionKit.Cryptography.CryptographicValue`1"/>
             </summary>
-            <param name="header"><see cref="T:AppConstructionKit.Cryptography.CryptographicHeader`1"/></param>
+            <param name="iv">Initialization Vector</param>
             <param name="value">byte array containing an encrypted value</param>
             <returns><see cref="T:AppConstructionKit.Cryptography.CryptographicValue`1"/></returns>
         </member>
@@ -261,7 +226,7 @@
             </summary>
             <param name="value">Value to encrypt</param>
             <param name="key">Cryptographic key</param>
-            <returns>Byte array containing <see cref="T:AppConstructionKit.Cryptography.CryptographicHeader`1"/> and encrypted value</returns>
+            <returns>Byte array containing <see cref="!:CryptographicHeader&lt;TAlgorithm&gt;"/> and encrypted value</returns>
         </member>
         <member name="M:AppConstructionKit.Cryptography.SymmetricEncryptionProvider`1.DecryptString(System.String,System.String)">
             <summary>

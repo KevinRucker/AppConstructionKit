@@ -41,11 +41,11 @@ namespace AppConstructionKit.Cryptography
     public class CryptographicValue<TAlgorithm> where TAlgorithm : SymmetricAlgorithm
     {
         /// <summary>
-        /// <see cref="CryptographicHeader{TAlgorithm}"/>
+        /// Cryptographic Initialization Vector
         /// </summary>
-        public CryptographicHeader<TAlgorithm> Header { get; set; }
+        public byte[] Iv { get; set; }
         /// <summary>
-        /// Byte array containing an encrypted value
+        /// Encrypted value
         /// </summary>
         public byte[] Value { get; set; }
 
@@ -54,19 +54,19 @@ namespace AppConstructionKit.Cryptography
 
         }
 
-        private CryptographicValue(CryptographicHeader<TAlgorithm> header, byte[] value)
+        private CryptographicValue(byte[] iv, byte[] value)
         {
-            Header = header;
+            Iv = iv;
             Value = value;
         }
 
         private CryptographicValue(byte[] value)
         {
-            var temp = (byte[])Array.CreateInstance(typeof(byte), CryptographicHeader<TAlgorithm>.Size());
-            Buffer.BlockCopy(value, 0, temp, 0, CryptographicHeader<TAlgorithm>.Size());
-            Header = CryptographicHeader<TAlgorithm>.Create(temp);
-            Value = (byte[])Array.CreateInstance(typeof(byte), value.Length - CryptographicHeader<TAlgorithm>.Size());
-            Buffer.BlockCopy(value, CryptographicHeader<TAlgorithm>.Size(), Value, 0, value.Length - CryptographicHeader<TAlgorithm>.Size());
+            var algorithm = SymmetricAlgorithm.Create(typeof(TAlgorithm).Name);
+            Iv = new byte[algorithm.BlockSize / 8];
+            Buffer.BlockCopy(value, 0, Iv,  0, algorithm.BlockSize / 8);
+            Value = (byte[])Array.CreateInstance(typeof(byte), value.Length - Iv.Length);
+            Buffer.BlockCopy(value, Iv.Length, Value, 0, value.Length - Iv.Length);
         }
 
         /// <summary>
@@ -81,12 +81,12 @@ namespace AppConstructionKit.Cryptography
         /// <summary>
         /// Factory method creates an instance of <see cref="CryptographicValue{TAlgorithm}"/>
         /// </summary>
-        /// <param name="header"><see cref="CryptographicHeader{TAlgorithm}"/></param>
+        /// <param name="iv">Initialization Vector</param>
         /// <param name="value">byte array containing an encrypted value</param>
         /// <returns><see cref="CryptographicValue{TAlgorithm}"/></returns>
-        public static CryptographicValue<TAlgorithm> Create(CryptographicHeader<TAlgorithm> header, byte[] value)
+        public static CryptographicValue<TAlgorithm> Create(byte[] iv, byte[] value)
         {
-            return new CryptographicValue<TAlgorithm>(header, value);
+            return new CryptographicValue<TAlgorithm>(iv, value);
         }
 
         /// <summary>
@@ -105,9 +105,9 @@ namespace AppConstructionKit.Cryptography
         /// <returns>Binary value of a <see cref="CryptographicValue{TAlgorithm}"/></returns>
         public byte[] GetBinaryValue()
         {
-            var temp = (byte[])Array.CreateInstance(typeof(byte), CryptographicHeader<TAlgorithm>.Size() + Value.Length);
-            Buffer.BlockCopy(Header.GetBinaryValue(), 0, temp, 0, CryptographicHeader<TAlgorithm>.Size());
-            Buffer.BlockCopy(Value, 0, temp, CryptographicHeader<TAlgorithm>.Size(), Value.Length);
+            var temp = (byte[])Array.CreateInstance(typeof(byte), Iv.Length + Value.Length);
+            Buffer.BlockCopy(Iv, 0, temp, 0, Iv.Length);
+            Buffer.BlockCopy(Value, 0, temp, Iv.Length, Value.Length);
             return temp;
         }
     }

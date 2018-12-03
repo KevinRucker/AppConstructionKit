@@ -85,9 +85,7 @@ namespace AppConstructionKit.Cryptography
                         {
                             plainStream.CopyTo(encryptStream);
                             encryptStream.FlushFinalBlock();
-                            var header = CryptographicHeader<TAlgorithm>.Create();
-                            header.Iv = algorithm.IV;
-                            var encrypted = CryptographicValue<TAlgorithm>.Create(header, msEncrypt.ToArray());
+                            var encrypted = CryptographicValue<TAlgorithm>.Create(algorithm.IV, msEncrypt.ToArray());
                             algorithm.Clear();
                             return encrypted.GetBinaryValue();
                         }
@@ -126,7 +124,7 @@ namespace AppConstructionKit.Cryptography
             }
 
             var cryptoValue = CryptographicValue<TAlgorithm>.Create(value);
-            using (var decryptor = algorithm.CreateDecryptor(key, cryptoValue.Header.Iv))
+            using (var decryptor = algorithm.CreateDecryptor(key, cryptoValue.Iv))
             {
                 using (var msDecrypt = new MemoryStream(cryptoValue.Value))
                 {

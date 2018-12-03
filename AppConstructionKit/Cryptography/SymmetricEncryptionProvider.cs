@@ -62,7 +62,7 @@ namespace AppConstructionKit.Cryptography
         /// </summary>
         /// <param name="value">Value to encrypt</param>
         /// <param name="key">Cryptographic key</param>
-        /// <returns>Byte array containing <see cref="CryptographicHeader{TAlgorithm}"/> and encrypted value</returns>
+        /// <returns>Byte array containing Initialization Vector and encrypted value</returns>
         public byte[] EncryptBytes(byte[] value, byte[] key)
         {
             var algorithm = SymmetricAlgorithm.Create(typeof(TAlgorithm).Name);

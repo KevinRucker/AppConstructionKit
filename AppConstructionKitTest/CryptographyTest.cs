@@ -14,7 +14,7 @@ namespace AppConstructionKitTest
         [TestMethod]
         public void EncryptDecryptString()
         {
-            var crypto = new SymmetricEncryptionProvider<Aes>();
+            var crypto = SymmetricEncryptionProvider<Aes>.Create();
             var encrypted = crypto.EncryptString(testValue, passPhrase);
             var decrypted = crypto.DecryptString(encrypted, passPhrase);
             Assert.AreEqual(testValue, decrypted);
@@ -23,7 +23,7 @@ namespace AppConstructionKitTest
         [TestMethod]
         public void EncryptDecryptStringFail()
         {
-            var crypto = new SymmetricEncryptionProvider<Aes>();
+            var crypto = SymmetricEncryptionProvider<Aes>.Create();
             var encrypted = crypto.EncryptString(passPhrase, testValue);
             Assert.ThrowsException<CryptographicException>(
                 () => crypto.DecryptString(encrypted, "Different passphrase"));
@@ -32,7 +32,7 @@ namespace AppConstructionKitTest
         [TestMethod]
         public void EncryptDecryptBytes()
         {
-            var crypto = new SymmetricEncryptionProvider<Aes>();
+            var crypto = SymmetricEncryptionProvider<Aes>.Create();
             var key = CryptographicDigest.Create().GetDigest(passPhrase, 32);
             var encrypted = crypto.EncryptBytes(new UTF8Encoding().GetBytes(testValue), key);
             var decrypted = new UTF8Encoding().GetString(crypto.DecryptBytes(encrypted, key));
@@ -42,7 +42,7 @@ namespace AppConstructionKitTest
         [TestMethod]
         public void EncryptDecryptBytesFail()
         {
-            var crypto = new SymmetricEncryptionProvider<Aes>();
+            var crypto = SymmetricEncryptionProvider<Aes>.Create();
             var key = CryptographicDigest.Create().GetDigest(passPhrase, 32);
             var differentKey = CryptographicDigest.Create().GetDigest("Different passphrase", 32);
             var encrypted = crypto.EncryptBytes(new UTF8Encoding().GetBytes(testValue), key);

@@ -43,6 +43,20 @@ namespace AppConstructionKit.Cryptography
     /// <typeparam name="TAlgorithm">The symmetric algorithm to use</typeparam>
     public class SymmetricEncryptionProvider<TAlgorithm> where TAlgorithm : SymmetricAlgorithm
     {
+        private SymmetricEncryptionProvider()
+        {
+
+        }
+
+        /// <summary>
+        /// Factory method creates an instance of <see cref="SymmetricEncryptionProvider{TAlgorithm}"/>
+        /// </summary>
+        /// <returns></returns>
+        public static SymmetricEncryptionProvider<TAlgorithm> Create()
+        {
+            return new SymmetricEncryptionProvider<TAlgorithm>();
+        }
+
         /// <summary>
         /// Encrypt string
         /// </summary>

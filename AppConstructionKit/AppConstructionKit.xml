@@ -212,6 +212,12 @@
             </summary>
             <typeparam name="TAlgorithm">The symmetric algorithm to use</typeparam>
         </member>
+        <member name="M:AppConstructionKit.Cryptography.SymmetricEncryptionProvider`1.Create">
+            <summary>
+            Factory method creates an instance of <see cref="T:AppConstructionKit.Cryptography.SymmetricEncryptionProvider`1"/>
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:AppConstructionKit.Cryptography.SymmetricEncryptionProvider`1.EncryptString(System.String,System.String)">
             <summary>
             Encrypt string
@@ -226,7 +232,7 @@
             </summary>
             <param name="value">Value to encrypt</param>
             <param name="key">Cryptographic key</param>
-            <returns>Byte array containing <see cref="!:CryptographicHeader&lt;TAlgorithm&gt;"/> and encrypted value</returns>
+            <returns>Byte array containing Initialization Vector and encrypted value</returns>
         </member>
         <member name="M:AppConstructionKit.Cryptography.SymmetricEncryptionProvider`1.DecryptString(System.String,System.String)">
             <summary>
